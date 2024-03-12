@@ -4,18 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f194627a-d19d-4c5f-93de-73db012a3939" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/first_project_ordersInRestaurant.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Dish.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Orders.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OrdersException.java" afterDir="false" />
+    <list default="true" id="f194627a-d19d-4c5f-93de-73db012a3939" name="Changes" comment="first save">
+      <change afterPath="$PROJECT_DIR$/menu.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/orders.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/restaurant/MenuManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/restaurant/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/restaurant/OrderManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/restaurant/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/Dish.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Orders.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OrdersException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/restaurant/OrderException.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +60,19 @@
       <option name="presentableId" value="Default" />
       <updated>1709566053336</updated>
     </task>
+    <task id="LOCAL-00001" summary="first save">
+      <option name="closed" value="true" />
+      <created>1709580541565</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1709580541565</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first save" />
+    <option name="LAST_COMMIT_MESSAGE" value="first save" />
   </component>
 </project>
