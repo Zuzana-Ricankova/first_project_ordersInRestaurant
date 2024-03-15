@@ -10,21 +10,26 @@ import java.util.*;
 public class MenuManager {
     public List <Dish> menuList = new ArrayList<>();
 
-    public void removeDishByName(String title) throws OrderException{
-        for (Iterator<Dish> iterator = menuList.iterator(); iterator.hasNext();) {
-            Dish dish = iterator.next();
-            if (dish.getTitle().equals(title)) {
-                iterator.remove();
-            }}
+
+    public void removeDishByID(Integer dishID) throws OrderException {
+        for (Dish dish :menuList) {
+            if (dishID.equals(dish.getID())) {
+                menuList.remove(dish);
+                resetMenuListIDs();
+                return;
+            }
+        }
+        throw new OrderException("Dish with ID: " + dishID + " doesn't exist!");
+    }
+
+    private void resetMenuListIDs() {
         Integer posledniID = 0;
-        for (Dish dish : menuList){
+        for (Dish dish : menuList) {
             dish.setID(++posledniID);
-        }throw new OrderException("Wrong title of dish: " + title + "!" + " It doesn't exist!");
+        }
     }
 
 
-
-    //funguje zadany index se musi rovnat ID jidla
     public Dish getDishes(Integer index) throws OrderException{
         for(Dish dish : menuList){
             if(dish.getID().equals(index)) {
@@ -36,14 +41,6 @@ public class MenuManager {
     public void addDish(Dish dish){
         menuList.add(dish);
     }
-
-
-//            public void setCurrentID (List <Dish> menuList){
-//                Integer posledniID = 0;
-//                for (Dish dish : menuList){
-//                    dish.setID(++posledniID);
-//                }
-//            }
 
 
             public void loadContentFromFile (String fileName) throws OrderException {
@@ -74,7 +71,6 @@ public class MenuManager {
                 }
             }
 
-            //hotove - funguje
             public void saveContentToFile (String fileName) throws OrderException {
                 String delimiter = "; ";
                 try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(fileName)))){

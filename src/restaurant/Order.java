@@ -1,9 +1,10 @@
-
 package restaurant;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-public class Order {
+
+public class Order implements Comparable<Order>{
 
     private int table;
     private int quantity;
@@ -17,10 +18,11 @@ public class Order {
         this.table = table;
         this.quantity = quantity;
         this.chooseDish = chooseDish;
-        this.orderedTime = orderedTime;
-        this.fulfilmentTime = fulfilmentTime;
+        setOrderedTime(orderedTime);
+        setFulfilmentTime(fulfilmentTime);
         this.isPayed = isPayed;
     }
+
 
     public Order(int table, int quantity, Dish chooseDish, LocalDateTime orderedTime) throws OrderException{
         this(table, chooseDish,quantity, orderedTime,null, false);
@@ -59,16 +61,47 @@ public class Order {
         return orderedTime;
     }
 
-    public void setOrderedTime(LocalDateTime orderedTime) {
-        this.orderedTime = orderedTime;
+    public void setOrderedTime(LocalDateTime time) throws OrderException {
+        if (time == null) {
+            throw new OrderException("Ordered time cannot be null.");
+        }
+
+        int seconds = time.getSecond();
+        if (seconds != 0) {
+            throw new OrderException("Ordered time cannot contain seconds. If you used LocalDateTime.now() than edit the format on: LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).withSecond(0).withNano(0)");
+        }
+
+        int nano = time.getNano();
+        if (nano != 0) {
+            throw new OrderException("Ordered time cannot contain nanosecond.");
+        }
+
+        this.orderedTime = time.withSecond(0).withNano(0);
+
     }
+
 
     public LocalDateTime getFulfilmentTime() {
         return fulfilmentTime;
     }
 
-    public void setFulfilmentTime(LocalDateTime fulfilmentTime) {
-        this.fulfilmentTime = fulfilmentTime;
+    public void setFulfilmentTime(LocalDateTime time) throws OrderException {
+        if (time == null) {
+            this.fulfilmentTime = null;
+            return;
+        }
+
+        int seconds = time.getSecond();
+        if (seconds != 0) {
+            throw new OrderException("Fulfilment time cannot contain seconds! If you used LocalDateTime.now() than edit the format on: LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).withSecond(0).withNano(0).");
+        }
+
+        int nano = time.getNano();
+        if (nano != 0) {
+            throw new OrderException("Fulfilment time cannot contain nanosecond.");
+        }
+
+        this.fulfilmentTime = time.withSecond(0).withNano(0);
     }
 
     public Boolean getPayed() {
@@ -79,11 +112,30 @@ public class Order {
         isPayed = payed;
     }
 
+    @Override
+    public int compareTo(Order order1) {
+        return this.orderedTime.compareTo(order1.getOrderedTime());
+    }
+
+    public String toStringWithTableInfo() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        String formattedOrderedTime = orderedTime.format(formatter);
+        String formattedFulfilmentTime = null;
+
+        if (fulfilmentTime != null) {
+        formattedFulfilmentTime = fulfilmentTime.format(formatter);
+    }
+
+         return  chooseDish.getTitle() +
+            " " + quantity + "x (" + chooseDish.getPrice() + " Kč):" +"\t" +
+            formattedOrderedTime + "-" +
+            ((formattedFulfilmentTime != null) ? formattedFulfilmentTime : "") +
+            " " + (isPayed ? "Zaplaceno" : "");
+}
 
     @Override
     public String toString() {
-        return "Order{" +
-                "table: " + table +
+        return "table: " + table +
                 ", quantity: " + quantity +
                 ", chooseDish: " + chooseDish +
                 ", orderedTime: " + orderedTime +

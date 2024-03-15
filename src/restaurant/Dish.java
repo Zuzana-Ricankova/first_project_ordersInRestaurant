@@ -3,10 +3,9 @@ package restaurant;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Iterator;
-import restaurant.MenuManager;
 
 
-public class Dish implements Iterable<Dish>{
+public class Dish{
     private Integer ID;
     private String title;
     private BigDecimal price;
@@ -76,21 +75,8 @@ public class Dish implements Iterable<Dish>{
         this.ID = ID;
     }
 
-
-    @Override
-    public Iterator<Dish> iterator() {
-        return null;
-    }
-
-    //upravit styl psani
     @Override
     public String toString() {
-        return "ID: " + ID;
-//                ", title='" + title + '\'' +
-//                ", price=" + price+
-//                ", imageName='" + imageName + '\'' +
-//                ", preparationTime=" + preparationTime +
-//                "\n";
+        return  ID.toString();
     }
-
 }
